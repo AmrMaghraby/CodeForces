@@ -1,0 +1,32 @@
+ ///IN THE NAME OF ALLAH
+ #include<bits/stdc++.h>
+ using namespace std;
+ bool cmp(pair<int,int>i,pair<int,int>j){
+  if(i.second<=j.second)
+     return true;
+  else
+     return false;
+ }
+ int main(){
+ int n;
+ scanf("%d",&n);
+ int Arr[n];
+ pair<int,int>Arr2[n];
+ for(int i=0;i<n;i++)
+  {
+   scanf("%d",&Arr[i]);
+   Arr2[i].first=Arr[i];
+   Arr2[i].second=i;
+  }
+ sort(Arr2,Arr2+n);
+ int cur=0;
+ for(int i=0;i<n;i++)
+   if(Arr2[i].first>cur)
+      cur=Arr2[i].first+1;
+   else
+      Arr2[i].first=cur,cur++;
+  sort(Arr2,Arr2+n,cmp);
+ for(int i=0;i<n;i++)
+      printf("%d ",Arr2[i]);
+}
+
