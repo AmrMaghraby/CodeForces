@@ -1,0 +1,51 @@
+ ///IN THE NAME OF ALLAH
+ #include<bits/stdc++.h>
+ using namespace std;
+ map<char,int>mp;
+ vector<string>vec;
+ int main(){
+ int n;
+ string Test;
+ scanf("%d",&n);
+ cin >> Test;
+ int j=0;
+ for(int i=0;i<Test.size();i++)
+   {
+     mp[Test[i]]=1;
+     for(j=i+1;j<Test.size();j++)
+            if(!mp[Test[j]])
+                break;
+     j--;
+     vec.push_back(Test.substr(i,j-i+1));
+     //cout<<Test.substr(i,j-i+1)<<endl;
+     i=j;
+   }
+ int Size=vec.size();
+ if(Size==n)
+   {
+    printf("YES\n");
+    for(auto i:vec)
+       cout<<i<<endl;
+    return 0;
+   }
+ else if(Size<n)
+    {
+       printf("NO");
+       return 0;
+    }
+ else if(Size>n)
+     for(int i=1;i<vec.size();i++)
+       {
+         vec[0]+=vec[i];
+         vec[i]=".";
+         Size--;
+         if(Size==n)
+            break;
+       }
+     printf("YES\n");
+     for(int i=0;i<vec.size();i++)
+       if(vec[i]==".")
+           continue;
+       else
+           cout<<vec[i]<<endl;
+}
